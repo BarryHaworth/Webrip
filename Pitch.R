@@ -42,7 +42,6 @@ for (i in 1:length(pitch$name)){
 pitch$ren <- ""
 
 for (i in 1:length(pitch$name)){
-  pitch$name[i] <- str_replace_all(pitch$name[i],"[[:punct:]]", " ")
   pitch$ren[i] <- paste0("ren ",pitch$V4[i]," ",str_replace_all(pitch$name[i]," ","_"),".mp3")
 }
 
