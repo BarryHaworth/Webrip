@@ -42,7 +42,8 @@ date_rip <- function(d){
 
 # d1 <- as.Date("2015-03-01",origin="1970-01-01")
 # d1 <- as.Date("2018-07-01",origin="1970-01-01")
-d1 <- as.Date("2018-12-01",origin="1970-01-01")
+# d1 <- as.Date("2018-12-01",origin="1970-01-01")
+d1 <- as.Date("2019-05-01",origin="1970-01-01")
 # d2 <- as.Date("2015-03-05",origin="1970-01-01")
 d2 <- Sys.Date()
 Schlock <- date_rip(d1)
