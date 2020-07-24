@@ -60,7 +60,7 @@ date_rip <- function(d){
 # d1 <- as.Date("2017-09-18",origin="1970-01-01") # Start of Book 18: Mandatory Failure
 # d1 <- as.Date("2018-07-25",origin="1970-01-01") # Start of Book 19: A Function of Firepower
 d1 <- as.Date("2019-06-16",origin="1970-01-01")  # Start of book 20: Sergeant in Motion
-d2 <- Sys.Date()
+d2 <- Sys.Date()d2 <- Sys.Date()
 Schlock <- date_rip(d1)
 
 for (d in as.numeric(d1):as.numeric(d2)){
