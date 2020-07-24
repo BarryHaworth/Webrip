@@ -40,11 +40,26 @@ date_rip <- function(d){
   return(images)
 }
 
-# d1 <- as.Date("2015-03-01",origin="1970-01-01")
-# d1 <- as.Date("2018-07-01",origin="1970-01-01")
-# d1 <- as.Date("2018-12-01",origin="1970-01-01")
-d1 <- as.Date("2019-05-01",origin="1970-01-01")
-# d2 <- as.Date("2015-03-05",origin="1970-01-01")
+# d1 <- as.Date("2000-06-12",origin="1970-01-01") # Start of Book 1: The Tub of Happiness 
+# d1 <- as.Date("2001-11-11",origin="1970-01-01") # Start of Book 2: The Teraport Wars 
+# d1 <- as.Date("2003-03-09",origin="1970-01-01") # Start of Book 3: Under New Management
+# d1 <- as.Date("2003-08-24",origin="1970-01-01") # Start of Book 4: The Blackness Between
+# d1 <- as.Date("2004-03-15",origin="1970-01-01") # Start of Book 5: The Scrapyard of Insufferable Arrogance
+# d1 <- as.Date("2004-09-12",origin="1970-01-01") # Start of Book 6: Resident Mad Scientist
+# d1 <- as.Date("2005-07-24",origin="1970-01-01") # Start of Book 7: Emperor Pius Dei
+# d1 <- as.Date("2006-08-17",origin="1970-01-01") # Start of Book 8: The Sharp End of the Stick 
+# d1 <- as.Date("2007-05-20",origin="1970-01-01") # Start of Book 9: The Body Politic
+# d1 <- as.Date("2008-02-29",origin="1970-01-01") # Start of Book 10: The Longshoreman of the Apocalypse 
+# d1 <- as.Date("2009-03-02",origin="1970-01-01") # Start of Book 11: Massively Parallel 
+# d1 <- as.Date("2010-11-29",origin="1970-01-01") # Start of Book 12: Force Multiplication
+# d1 <- as.Date("2011-11-13",origin="1970-01-01") # Start of Book 13: Random Access Memorabilia
+# d1 <- as.Date("2013-01-01",origin="1970-01-01") # Start of Book 14: Broken Wind
+# d1 <- as.Date("2014-03-16",origin="1970-01-01") # Start of Book 15: Delegates and Delegation
+# d1 <- as.Date("2015-03-30",origin="1970-01-01") # Start of Book 16: Big, Dumb Objects
+# d1 <- as.Date("2016-12-05",origin="1970-01-01") # Start of Book 17: A Little Immortality 
+# d1 <- as.Date("2017-09-18",origin="1970-01-01") # Start of Book 18: Mandatory Failure
+# d1 <- as.Date("2018-07-25",origin="1970-01-01") # Start of Book 19: A Function of Firepower
+d1 <- as.Date("2019-06-16",origin="1970-01-01")  # Start of book 20: Sergeant in Motion
 d2 <- Sys.Date()
 Schlock <- date_rip(d1)
 
@@ -65,4 +80,3 @@ for (i in 1:nrow(Schlock)){
                 paste(FILE_DIR,"/",strsplit(Schlock$url[i],"/")[[1]][7],sep=""),
                 quiet=TRUE, mode="wb")
 }
-
