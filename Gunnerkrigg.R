@@ -13,8 +13,9 @@ timestamp()
 PROJECT_DIR <- "c:/R/Webrip"
 FILE_DIR    <- "c:/R/Webrip/Gunnerkrigg"
 
-start = 1752
-stop  = 2206
+# start = 1752 
+start = 2207 # the next one that I don't have, 19/08/2020.
+stop  = 2377 # End of Chapter 77
 
 
 # for testing
