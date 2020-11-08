@@ -14,7 +14,7 @@ timestamp()
 PROJECT_DIR <- "c:/R/Webrip"
 FILE_DIR    <- "c:/R/Webrip/OCRemix"
 
-start = 1    # the next one that I don't have, 19/08/2020.
+start = 3846 # the next one that I don't have, 08/11/2020
 stop  = 4153 # Latest file as at 8th November 2020
 
 
