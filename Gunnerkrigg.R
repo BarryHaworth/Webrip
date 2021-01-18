@@ -15,7 +15,8 @@ FILE_DIR    <- "c:/R/Webrip/Gunnerkrigg"
 
 # start = 1752 
 start = 2207 # the next one that I don't have, 19/08/2020.
-stop  = 2377 # End of Chapter 77
+start = 2378 # the next one that I don't have, 18/01/2021.
+stop  = 2397 # End of Chapter 78
 
 
 # for testing
