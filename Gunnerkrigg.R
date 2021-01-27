@@ -45,3 +45,45 @@ for (i in start:stop){
                 quiet=TRUE, mode="wb")
 }
 
+# Extra Comics
+# Annie in the Forest Part 1
+# Annie in the Forest Part 2
+# Traveller
+# Coyote
+
+#Download the Images
+for (i in 0:100){
+  Gunnerkrigg <- paste0('https://www.gunnerkrigg.com/extracomics/Annie in the Forest Part 1/',formatC(i,3,flag="0"),'.jpg')
+  print(paste("downloading file",Gunnerkrigg))
+  download.file(Gunnerkrigg,
+                paste0(FILE_DIR,"/Annie1/",formatC(i,3,flag="0"),'.jpg'),
+                quiet=TRUE, mode="wb")
+}
+
+for (i in 0:100){
+  Gunnerkrigg <- paste0('https://www.gunnerkrigg.com/extracomics/Annie in the Forest Part 2/',formatC(i,3,flag="0"),'.jpg')
+  print(paste("downloading file",Gunnerkrigg))
+  download.file(Gunnerkrigg,
+                paste0(FILE_DIR,"/Annie2/",formatC(i,3,flag="0"),'.jpg'),
+                quiet=TRUE, mode="wb")
+}
+
+for (i in 0:100){
+  Gunnerkrigg <- paste0('https://www.gunnerkrigg.com/extracomics/Coyote/',formatC(i,3,flag="0"),'.jpg')
+  print(paste("downloading file",Gunnerkrigg))
+  download.file(Gunnerkrigg,
+                paste0(FILE_DIR,"/Coyote/",formatC(i,3,flag="0"),'.jpg'),
+                quiet=TRUE, mode="wb")
+}
+
+for (i in 0:100){
+  Gunnerkrigg <- paste0('https://www.gunnerkrigg.com/extracomics/Traveller/',formatC(i,3,flag="0"),'.jpg')
+  print(paste("downloading file",Gunnerkrigg))
+  download.file(Gunnerkrigg,
+                paste0(FILE_DIR,"/Traveller/",formatC(i,3,flag="0"),'.jpg'),
+                quiet=TRUE, mode="wb")
+}
+
+
+
+
