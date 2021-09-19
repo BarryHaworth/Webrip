@@ -10,8 +10,7 @@
 # Vol 8 https://www.girlswithslingshots.com/comic/gws-1401
 # Vol 9 https://www.girlswithslingshots.com/comic/gws-1600
 # Vol 10 https://www.girlswithslingshots.com/comic/gws-2004/
-
-#  No hyphens 1-800, hyphens thereafter
+# Turns out, Hyphenation is inconsistent.  No hyphens before 800, mostly has hyphens thereafter
 
 library(rvest)
 library(dplyr)
@@ -36,31 +35,51 @@ as.character(xml_attrs(image)[[1]][2])
 
 # Find image names for a given page
 page_rip <- function(p){
-  if (p <= 800){
-    url <-  paste0('https://www.girlswithslingshots.com/comic/gws',p)
-  } else {
-    url <-  paste0('https://www.girlswithslingshots.com/comic/gws-',p)
-  }
+  url1 <-  paste0('https://www.girlswithslingshots.com/comic/gws',p)
+  url2 <-  paste0('https://www.girlswithslingshots.com/comic/gws-',p)
   #Reading the HTML code from the website
-  webpage <- read_html(url)
-  node    <- html_nodes(webpage,'#cc-comic') 
-  image   <- as.character(xml_attrs(node)[[1]][2])
+  webpage1 <- read_html(url1)
+  node1    <- html_nodes(webpage1,'#cc-comic') 
+  if (length(node1)>0) {
+    image   <- as.character(xml_attrs(node1)[[1]][2])
+  } else {
+    webpage2 <- read_html(url2)
+    node2   <- html_nodes(webpage2,'#cc-comic') 
+    if (length(node2)>0) {
+      image   <- as.character(xml_attrs(node2)[[1]][2])
+    }
+  }
   return(image)
 }
 
-GWS <- data.frame(page=1,url=page_rip(1))
+#GWS <- data.frame(page=1,url=page_rip(1))  # Initialise GWS data frame
 
 p1 <- 1
+#p1 <- 295  # No page 294
 #p2 <- 10    # for testing
-p2 <- 1704  # Latest Strip as at 18/09/2021
+p2 <- 2008  # Latest Strip as at 12/03/2015
 
-for (p in p1:p2){
-  print(paste("Extracting links for page",p))
-  new <- data.frame(page=p,url=page_rip(p))
-  GWS <- rbind(GWS,new)
+page = seq(p1:p2)
+GWS <- data.frame(page)
+GWS$url <- ''
+
+GWS <- GWS %>% filter(page != 294)  # There is no page 294
+GWS <- GWS %>% filter(page != 1460)  # There is no page 294
+GWS <- GWS %>% filter(page != 1461)  # There is no page 294
+GWS <- GWS %>% filter(page != 1515)  # There is no page 294
+GWS <- GWS %>% filter(page != 1616)  # There is no page 294
+GWS <- GWS %>% filter(page != 1617)  # There is no page 294
+
+# Extract the links.  
+for (p in 1:length(GWS$page)){
+  if ((GWS$url[p]=='')){  # Download links not downloaded yet
+    print(paste("Extracting links for page",GWS$page[p]))
+    GWS$url[p] <- page_rip(GWS$page[p])
+  }
 }
 
 GWS <- unique(GWS)
+length(unique(GWS$url))  # Check how many unique URLs
 GWS$url <- as.character(GWS$url)
 save(GWS,file=paste0(PROJECT_DIR,"/GWS.RData"))
 write.table(GWS$url,file=paste0(PROJECT_DIR,"/GWS.txt"),row.names = F,col.names = F,quote=F)
@@ -69,6 +88,6 @@ write.table(GWS$url,file=paste0(PROJECT_DIR,"/GWS.txt"),row.names = F,col.names 
 for (i in 1:nrow(GWS)){
   print(paste("downloading file",GWS$url[i]))
   download.file(GWS$url[i],
-                paste0(FILE_DIR,"/gws-",formatC(GWS$page[i],4,flag="0"),".jpg"),
+                paste0(FILE_DIR,"/GWS",formatC(GWS$page[i],4,flag="0"),".jpg"),
                 quiet=TRUE, mode="wb")
 }
