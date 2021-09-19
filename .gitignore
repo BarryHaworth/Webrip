@@ -8,4 +8,6 @@
 *.cbz
 *.png
 *.mp3
+*.txt
+*.RData
 ren.bat
