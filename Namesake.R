@@ -40,7 +40,7 @@ rip_url <- function(url){
 namesake <- rip_url(url)  # Save the first page
 
 # How many pages total?  Erstwhile had 521.  Namesake has 1736
-for (i in seq(1:1000)){
+for (i in seq(1:2000)){
   url <- tail(namesake$next_url,1)
   print(paste("Iteration",i,"Looking up page",url))
   namesake <- rbind(namesake,rip_url(url))
