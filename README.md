@@ -32,3 +32,11 @@ Stand Still, Stay Silent:  http://sssscomic.com/
 
 The Property of Hate:  http://rgb.thecomicseries.com/archive/
 
+Erika and the Princes in disguise:  https://www.webtoons.com/en/challenge/erika-and-the-princes-in-distress/episode-1/viewer?title_no=341945&episode_no=2
+
+Flipside:  https://flipsidecomics.com/comic.php?i=1
+
+Two kinds:  https://twokinds.keenspot.com/comic/1/
+
+Yet Another Fantasy Gamer Comic:  https://www.yafgc.net/comic/bob-meets-gren/  <- DONE
+
