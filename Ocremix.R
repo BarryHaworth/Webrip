@@ -5,6 +5,7 @@
 library(rvest)
 library(dplyr)
 library(stringr)
+library(xml2)
 
 options(timeout= 4000000)
 
@@ -16,8 +17,8 @@ FILE_DIR    <- "c:/R/Webrip/OCRemix"
 
 #start = 3846 # the next one that I don't have, 08/11/2020
 #stop  = 4153 # Latest file as at 8th November 2020
-start = 4154 # the next one that I don't have, 29/09/2021
-stop  = 4273 # Latest file as at 29/09/2021
+start = 4274 # the next one that I don't have, 28/05/2022
+stop  = 4346 # Latest file as at 28/05/2022
 
 
 # for testing
