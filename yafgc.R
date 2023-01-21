@@ -45,6 +45,9 @@ if (file.exists(paste0(PROJECT_DIR,"/yafgc.RData"))){
   yafgc <- rip_url(url)  # Initialise with  first page
 }
 
+# Drop the last record when rerunning
+yafgc <- head(yafgc,nrow(yafgc)-1)
+
 # How many pages total?  3519 as at 18/06/2022
 for (i in seq(1:4000)){
   url <- tail(yafgc$next_url,1)
