@@ -48,8 +48,8 @@ if (file.exists(paste0(PROJECT_DIR,"/goats.RData"))){
 # Drop the last record when rerunning
 if (nrow(goats)>1) goats <- head(goats,nrow(goats)-1)
 
-# How many pages total?  no idea
-for (i in seq(1:4000)){
+# How many pages total?  no idea.  In practice < 1200
+for (i in seq(1:1200)){
   url <- tail(goats$next_url,1)
   print(paste("Iteration",i,"Looking up page",url))
   tryCatch({goats <- rbind(goats,rip_url(url))},error=function(e){})
@@ -59,14 +59,15 @@ goats <- unique(goats)  # remove dupes
 save(goats,file=paste0(PROJECT_DIR,"/goats.RData"))
 
 # Download the Images
-# Image name includes date, do not need to pad at start
+# Include image number at the start of name.
 
-for (i in 1:nrow(goats)){
+n <- nrow(goats)
+for (i in 1:nrow(n)){
   name <- paste0(formatC(i,3,flag="0"),"_",goats$image_name[i])
   if (file.exists(paste0(FILE_DIR,"/",name))){
     print(paste("File",paste0(FILE_DIR,"/",name),"Already Exists"))
   } else{
-    print(paste("downloading file",name))
+    print(paste("downloading file",i,"of",n,name))
     download.file(goats$image[i],
                   paste0(FILE_DIR,"/",name),
                   quiet=TRUE, mode="wb")

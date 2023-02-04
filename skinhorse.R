@@ -48,8 +48,8 @@ if (file.exists(paste0(PROJECT_DIR,"/skinhorse.RData"))){
 # Drop the last record when rerunning
 if (nrow(skinhorse)>1) skinhorse <- head(skinhorse,nrow(skinhorse)-1)
 
-# How many pages total?  no idea
-for (i in seq(1:4000)){
+# How many pages total?  5253 in total
+for (i in seq(1:5260)){
   url <- tail(skinhorse$next_url,1)
   print(paste("Iteration",i,"Looking up page",url))
   tryCatch({skinhorse <- rbind(skinhorse,rip_url(url))},error=function(e){})
@@ -59,14 +59,15 @@ skinhorse <- unique(skinhorse)  # remove dupes
 save(skinhorse,file=paste0(PROJECT_DIR,"/skinhorse.RData"))
 
 # Download the Images
-# Image name includes date, do not need to pad at start
+# Include image number at the start of name.
 
-for (i in 1:nrow(skinhorse)){
+n <- nrow(skinhorse)
+for (i in 1:n){
   name <- paste0(formatC(i,3,flag="0"),"_",skinhorse$image_name[i])
   if (file.exists(paste0(FILE_DIR,"/",name))){
     print(paste("File",paste0(FILE_DIR,"/",name),"Already Exists"))
   } else{
-    print(paste("downloading file",name))
+    print(paste("downloading file",i,"of",n,name))
     download.file(skinhorse$image[i],
                   paste0(FILE_DIR,"/",name),
                   quiet=TRUE, mode="wb")
