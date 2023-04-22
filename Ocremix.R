@@ -26,7 +26,6 @@ FILE_DIR    <- "c:/R/Webrip/OCRemix"
 start = 4308 # the next one that I don't have, 29/05/2022
 stop  = 4346 # Latest file as at 08/12/2021
 
-
 # for testing
 d = start
 url <- paste0('https://ocremix.org/remix/OCR',formatC(d,4,flag="0"))

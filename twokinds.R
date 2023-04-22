@@ -37,10 +37,14 @@ rip_url <- function(url){
   return(results)
 }
 
-twokinds <- rip_url(url)  # Save the first page
+if (file.exists(paste0(PROJECT_DIR,"/twokinds.RData"))){
+  load(paste0(PROJECT_DIR,"/twokinds.RData"))  # Load the data file if it exists
+} else {
+  twokinds <- rip_url(url)  # Initialise with  first page
+}
 
 # How many pages total?  1157 as at 07/10/2021
-for (i in seq(1:1200)){
+for (i in seq(1:1500)){
   url <- tail(twokinds$next_url,1)
   print(paste("Iteration",i,"Looking up page",url))
   twokinds <- rbind(twokinds,rip_url(url))
