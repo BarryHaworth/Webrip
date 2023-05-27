@@ -13,23 +13,24 @@ timestamp()
 PROJECT_DIR <- "c:/R/Webrip"
 FILE_DIR    <- "c:/R/Webrip/Gunnerkrigg"
 
-# Volume 1: Chapter  1 - 14 Page    1 -  304
-# Volume 2: Chapter 15 - 22 page  305 -  569
-# Volume 3: Chapter 23 - 31 page  570 -  843
-# Volume 4: Chapter 32 - 41 page  844 - 1177
-# Volume 5: Chapter 42 - 49 page 1178 - 1463
-# Volume 6: Chapter 50 - 59 page 1464 - 1752
-# Volume 7: Chapter 60 - 68 page 1753 - 2062
-# Volume 8: Chapter 69 - 77 page 2063 - 2377
-# Volume 9: Chapter 78 -    page 2378 - 
+# Volume  1: Chapter  1 - 14 Page    1 -  304
+# Volume  2: Chapter 15 - 22 page  305 -  569
+# Volume  3: Chapter 23 - 31 page  570 -  843
+# Volume  4: Chapter 32 - 41 page  844 - 1177
+# Volume  5: Chapter 42 - 49 page 1178 - 1463
+# Volume  6: Chapter 50 - 59 page 1464 - 1752
+# Volume  7: Chapter 60 - 68 page 1753 - 2062
+# Volume  8: Chapter 69 - 77 page 2063 - 2377
+# Volume  9: Chapter 78 - 86 page 2378 - 2699
+# Volume 10: Chapter 87 -    page 2700 - 
 
 # start = 1752 
 # start = 2207 # the next one that I don't have, 19/08/2020.
 # start = 2378 # the next one that I don't have, 18/01/2021.
 #start = 1 
 #stop  = 2397 # End of Chapter 78
-start = 2493
-stop  = 2629  # Latest page 19 (as at 28/05/2022)
+start = 2378
+stop  = 2787  # Latest page 19 (as at 24/05/2022)
 
 
 # for testing

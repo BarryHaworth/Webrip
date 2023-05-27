@@ -18,8 +18,9 @@ dir.create(FILE_DIR,showWarnings = FALSE)
 # Pages of type: https://wallpaperscraft.com/all/page2
 
 start <- 1
-stop  <- 9173
+stop  <- 9175
 
+# Test URL
 url <- 'https://wallpaperscraft.com/all/page2'
 
 rip_url <- function(url){
@@ -38,7 +39,7 @@ if (file.exists(paste0(PROJECT_DIR,"/wallpaperscraft.RData"))){
 for (i in start:stop){
   url <- paste0('https://wallpaperscraft.com/all/page',i)
   print(paste("Ripping page",i,"url",url))
-  thumbs <- rip_url(url)
+  thumbs <- tryCatch({rip_url(url)},error=function(e){}) 
   wallpaperscraft <- rbind(wallpaperscraft,thumbs)
 }
 
@@ -54,11 +55,11 @@ for (i in 1:nrow(wallpaperscraft)){
   image_name <- image_name[[1]][length(image_name[[1]])]
   
   if (file.exists(paste0(FILE_DIR,"/",image_name))){
-    print(paste("File",paste0(FILE_DIR,"/",image_name),"Already Exists"))
+    #print(paste("File",paste0(FILE_DIR,"/",image_name),"Already Exists"))
   } else{
     print(paste("downloading file",i,"of",nrow(wallpaperscraft),image_name))
-    download.file(phone_res,
+    tryCatch({download.file(phone_res,
                   paste0(FILE_DIR,"/",image_name),
-                  quiet=TRUE, mode="wb")
+                  quiet=TRUE, mode="wb")},error=function(e){print('Remote File Does not Exist')})
   }
 }
