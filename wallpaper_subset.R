@@ -17,8 +17,6 @@ SUB_DIR     <- "e:/wallpaperscraft/1920x1200 subset"
 full_list <- data.frame(file=list.files(FULL_DIR))
 sub_list  <- data.frame(file=list.files(SUB_DIR))
 
-anti_list <- anti_join(full_list,sub_list) # files not in the subset
-
 #  Identify Keywords in both directories, in particular those not in the subset
 
 full_keys <- full_list %>% separate(file,c("key1","key2","key3","key4","key5","key6","key7","key8","key9","key10"),sep="_")
@@ -37,7 +35,8 @@ sub_key_count  <- sub_melt  %>% count(keyword) %>% arrange(-n)
 compare <- full_key_count %>% rename(full_n=n) %>% 
            full_join(sub_key_count %>% rename(sub_n=n)) %>% 
            replace(is.na(.), 0) %>%
-           mutate(sub_pct=sub_n/full_n) %>%
+           mutate(delta=full_n-sub_n, sub_pct=sub_n/full_n) %>%
+           arrange(delta,desc=TRUE) %>%
            filter(full_n>1)  
 
 # Identify a list of keywords to copy.
@@ -45,11 +44,17 @@ compare <- full_key_count %>% rename(full_n=n) %>%
 # Want to increase to 10GB => 32,000 files (another ~19,000)
 
 # Partial
-compare %>% filter(full_n>9 & sub_pct<1 & sub_pct>0.5)
+
+fraction <- 0.7
+compare %>% filter(full_n>9 & sub_pct<1 & sub_pct>fraction)
+keywords <- compare %>% filter(full_n>9 & sub_pct<1 & sub_pct>fraction) %>% select(keyword)
+keywords <- as.vector(keywords$keyword)
 
 # Given a list of keywords, copy files from full to subset
 #keywords <- c("trees","tree","forest","mountains","flowers","bouquet","sky","sunset")
-keywords <- c("stars","planet","kaleidoscope","planets","satellite","eclipse","asteroids")
+#keywords <- c("stars","planet","kaleidoscope","planets","satellite","eclipse","asteroids")
+# keywords <- c("rose","flower","mountain","coffee","abstraction","blur")
+keywords <- c("sea","flower","leaves")
 
 new_files <- full_melt %>% filter(keyword %in% keywords) %>% select(file) %>% unique() %>% anti_join(sub_list)
 
