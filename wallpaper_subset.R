@@ -45,16 +45,18 @@ compare <- full_key_count %>% rename(full_n=n) %>%
 
 # Partial
 
-fraction <- 0.7
-compare %>% filter(full_n>9 & sub_pct<1 & sub_pct>fraction)
-keywords <- compare %>% filter(full_n>9 & sub_pct<1 & sub_pct>fraction) %>% select(keyword)
+fraction <- 0.699
+compare %>% filter(sub_pct<1 & sub_pct>fraction)
+keywords <- compare %>% filter(sub_pct<1 & sub_pct>fraction) %>% select(keyword)
 keywords <- as.vector(keywords$keyword)
 
 # Given a list of keywords, copy files from full to subset
 #keywords <- c("trees","tree","forest","mountains","flowers","bouquet","sky","sunset")
 #keywords <- c("stars","planet","kaleidoscope","planets","satellite","eclipse","asteroids")
 # keywords <- c("rose","flower","mountain","coffee","abstraction","blur")
-keywords <- c("sea","flower","leaves")
+# keywords <- c("sea","flower","leaves")
+# keywords <- c("future","koala","koalas","lines","line")
+# keywords <- c("sun","sunny","sunrise","sunlight")
 
 new_files <- full_melt %>% filter(keyword %in% keywords) %>% select(file) %>% unique() %>% anti_join(sub_list)
 

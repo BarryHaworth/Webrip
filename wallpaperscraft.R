@@ -19,7 +19,7 @@ dir.create(FILE_DIR,showWarnings = FALSE)
 # Pages of type: https://wallpaperscraft.com/all/page2
 
 start <- 1
-stop  <- 9298 # As at 17/06/2023
+stop  <- 9345 # As at 06/07/2023
 
 # Test URL
 url <- 'https://wallpaperscraft.com/all/page2'
@@ -46,26 +46,6 @@ for (i in start:stop){
 
 wallpaperscraft <- wallpaperscraft %>% unique()
 save(wallpaperscraft,file=paste0(PROJECT_DIR,"/wallpaperscraft.RData"))
-
-# Image Keywords
-# Identify the three keywords for each image and prioritise 
-
-keywords <- data.frame()
-for (i in 1:nrow(wallpaperscraft)){
-  image_name <- strsplit(wallpaperscraft$thumbnail[i],'[/]')
-  image_name <- image_name[[1]][length(image_name[[1]])]
-  keys <- strsplit(image_name,"_")[[1]]
-  for (j in 1:(length(keys)-2)){
-    keyword <- keys[j]
-    #print(paste("Image",i,"Keyword",j,keyword))
-    keywords<- rbind(keywords,data.frame(image_name,keyword))
-  }
-}
-keywords <- keywords %>% unique()
-save(keywords,file=paste0(PROJECT_DIR,"/keywords.RData"))
-
-key_list <- keywords %>% select(keyword) %>% group_by(keyword) %>% mutate(n=n()) %>% unique()
-
 
 #Resolution
 # res <- "1080x1920"  # Phone Resolution
