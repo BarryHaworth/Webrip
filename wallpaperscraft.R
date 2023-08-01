@@ -49,7 +49,8 @@ save(wallpaperscraft,file=paste0(PROJECT_DIR,"/wallpaperscraft.RData"))
 
 #Resolution
 # res <- "1080x1920"  # Phone Resolution
-res <- "1920x1200"  # tablet resolution
+# res <- "1920x1200"  # tablet resolution
+res <- "2160x1620"  # iPad resolution
 
 # Download the files
 for (i in 1:nrow(wallpaperscraft)){
