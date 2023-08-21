@@ -29,8 +29,8 @@ sub_keys  <- cbind(sub_list,sub_keys)
 sub_melt  <- melt(sub_keys,id=1,value.name="keyword",na.rm=TRUE) %>% 
              select(-"variable") %>% filter(keyword != "1920x1200.jpg") %>% arrange(file)
 
-full_key_count <- full_melt %>% count(keyword) %>% arrange(-n)
-sub_key_count  <- sub_melt  %>% count(keyword) %>% arrange(-n)
+full_key_count <- full_melt %>% count(keyword) %>% arrange(-n) %>% filter(n>1)
+sub_key_count  <- sub_melt  %>% count(keyword) %>% arrange(-n) %>% filter(n>1)
 
 compare <- full_key_count %>% rename(full_n=n) %>% 
            full_join(sub_key_count %>% rename(sub_n=n)) %>% 

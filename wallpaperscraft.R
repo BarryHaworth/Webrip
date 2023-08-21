@@ -50,7 +50,17 @@ save(wallpaperscraft,file=paste0(PROJECT_DIR,"/wallpaperscraft.RData"))
 #Resolution
 # res <- "1080x1920"  # Phone Resolution
 # res <- "1920x1200"  # tablet resolution
-res <- "2160x1620"  # iPad resolution
+res <- "1920x1080"  # hi-res resolution
+#res <- "2160x1620"  # iPad resolution
+
+# File List (There's a better way of doing this ... )
+file_list <- data.frame(file_name="")
+for (i in 1:nrow(wallpaperscraft)){
+  file_name <- paste0(strtrim(wallpaperscraft$thumbnail[i],nchar(wallpaperscraft$thumbnail[i])-11),res,".jpg")  
+  file_list <- rbind(file_list,file_name)
+}
+
+ write.table(file_list,paste0(FILE_DIR,"/wallpapers_",res,".txt"),row.names=FALSE,col.names=FALSE)
 
 # Download the files
 for (i in 1:nrow(wallpaperscraft)){
