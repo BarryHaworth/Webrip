@@ -27,7 +27,7 @@ dir.create(FILE_DIR,showWarnings = FALSE)
 #name <- paste0(formatC(i,3,flag="0"),"_",word(link,-1,sep='/'))
 
 start = 1 
-stop  = 2628 # Latest comic as at 06/06/2022
+stop  = 2831 # Latest comic as at 22/09/2023
 
 #  Start and Stop
 
