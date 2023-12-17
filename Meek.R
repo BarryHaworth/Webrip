@@ -14,6 +14,7 @@ timestamp()
 
 PROJECT_DIR <- "c:/R/Webrip"
 FILE_DIR    <- "c:/R/Webrip/Meek"
+dir.create(FILE_DIR, showWarnings = FALSE)  # Create directory if it doesn't exist
 
 start = 1 
 #start = 2207 # the next one that I don't have, 19/08/2020.
