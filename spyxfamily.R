@@ -44,11 +44,15 @@ rip_url <- function(url){
   return(results)
 }
 
+# Read the existing data frame if it exists
 if (file.exists(paste0(PROJECT_DIR,"/spyxfamily.RData"))){
   load(paste0(PROJECT_DIR,"/spyxfamily.RData"))
 } else {
   spyxfamily <- rip_url(url)  # Save the first page
 }
+
+# remove records which have no Next URL to allow 
+spyxfamily <- spyxfamily %>% filter(next_url!="")
 
 # How many pages total?  91 chapters plus extras
 for (i in seq(1:120)){
@@ -76,4 +80,5 @@ for (i in 1:nrow(spyxfamily)){
                 quiet=TRUE, mode="wb")
   }
 }
+
 
