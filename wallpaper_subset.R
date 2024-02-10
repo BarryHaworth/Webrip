@@ -1,7 +1,7 @@
 # WallpapersCraft
-# Program to manage wallpater files downloaded from 
+# Program to manage wallpaper files downloaded from 
 # the https://wallpaperscraft.com/ web site
-# and manage a subset of these files to load onto my table
+# and manage a subset of these files to load onto my tablet
 
 library(dplyr)
 library(tidyr)

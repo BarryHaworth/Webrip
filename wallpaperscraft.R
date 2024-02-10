@@ -9,17 +9,20 @@ library(rvest)
 library(dplyr)
 library(xml2)
 library(stringr)
+library(tidyr)
+library(data.table)
 
 PROJECT_DIR <- "c:/R/Webrip"
 #FILE_DIR    <- "c:/R/Webrip/wallpaperscraft"
-FILE_DIR    <- "e:/wallpaperscraft"
+FILE_DIR    <- "f:/pictures/wallpaperscraft"
 dir.create(FILE_DIR,showWarnings = FALSE)
 
 # Stage 1: Page through the list
 # Pages of type: https://wallpaperscraft.com/all/page2
 
 start <- 1
-stop  <- 9345 # As at 06/07/2023
+# stop  <- 9345 # As at 06/07/2023
+stop  <- 9725 # As at 08/02/2024
 
 # Test URL
 url <- 'https://wallpaperscraft.com/all/page2'
@@ -47,33 +50,55 @@ for (i in start:stop){
 wallpaperscraft <- wallpaperscraft %>% unique()
 save(wallpaperscraft,file=paste0(PROJECT_DIR,"/wallpaperscraft.RData"))
 
+# Filter unwanted files
+# Context: I am not interested in car pictures
+
+file_names <- wallpaperscraft %>% 
+  separate_wider_delim(thumbnail,delim="/",names=c("http","blank","url","image","single","file_name"),too_few="align_end") %>%
+  select("file_name")
+wall_names <- cbind(wallpaperscraft,file_names)
+
+full_keys <- wall_names %>% separate_wider_delim(file_name,
+                                                 delim="_",
+                                                 names=c("key1","key2","key3","key4","key5","key6","key7","key8","key9","key10","key11","key12","image_id","res"),
+                                                 too_few="align_end",too_many="drop")
+
+full_melt  <- melt(full_keys %>% select(thumbnail:key12),id="thumbnail",value.name="keyword",na.rm=TRUE) %>% arrange(thumbnail)
+
+full_key_count <- full_melt %>% count(keyword) %>% arrange(-n) %>% filter(n>1)
+
+# List of keywords to purge from the files
+keywords <- c("car","motorcycle","motorcycles","aston","martin","bmw","acura","sports","bike","porsche",
+              "audi","lamborghini","motorcyclist","cars","ferrari","mercedes","nissan",
+              "v8","auto","chevrolet","suv","mustang","toyota","honda","ford","mercedesbenz",
+              "mclaren","volkswagen","jeep","sportscar","yamaha","mazda","dodge","gtr",
+              "bentley","corvette","rdx","bugatti","benz","v12","maserati","lincoln",
+              "concept","lexus","hyundai","mitsubishi",
+              "plymouth","chevy","convertible","abarth","speedster","volvo","maybach","fiat",
+              "etype","ftype","camaro")
+
+del_files <- full_melt %>% filter(keyword %in% keywords) %>% select(thumbnail) %>% unique() 
+
+wall_filtered <- wall_names %>% anti_join(del_files,by="thumbnail")
+
 #Resolution
-# res <- "1080x1920"  # Phone Resolution
+res <- "1080x1920"  # Phone Resolution
 # res <- "1920x1200"  # tablet resolution
-res <- "1920x1080"  # hi-res resolution
-#res <- "2160x1620"  # iPad resolution
-
-# File List (There's a better way of doing this ... )
-file_list <- data.frame(file_name="")
-for (i in 1:nrow(wallpaperscraft)){
-  file_name <- paste0(strtrim(wallpaperscraft$thumbnail[i],nchar(wallpaperscraft$thumbnail[i])-11),res,".jpg")  
-  file_list <- rbind(file_list,file_name)
-}
-
- write.table(file_list,paste0(FILE_DIR,"/wallpapers_",res,".txt"),row.names=FALSE,col.names=FALSE)
+# res <- "1920x1080"  # hi-res resolution
+# res <- "2160x1620"  # iPad resolution
 
 # Download the files
-for (i in 1:nrow(wallpaperscraft)){
-  thumbnail <- wallpaperscraft$thumbnail[i]
+for (i in 1:nrow(wall_filtered)){
+  thumbnail <- wall_filtered$thumbnail[i]
   # Get the address for the resolution we want
-  image_res <- paste0(strtrim(wallpaperscraft$thumbnail[i],nchar(wallpaperscraft$thumbnail[i])-11),res,".jpg")  
+  image_res <- paste0(strtrim(wall_filtered$thumbnail[i],nchar(wall_filtered$thumbnail[i])-11),res,".jpg")  
   image_name <- strsplit(image_res,'[/]')
   image_name <- image_name[[1]][length(image_name[[1]])]
   
   if (file.exists(paste0(FILE_DIR,"/",res,"/",image_name))){
     #print(paste("File",paste0(FILE_DIR,"/",image_name),"Already Exists"))
   } else{
-    print(paste("downloading file",i,"of",nrow(wallpaperscraft),image_name))
+    print(paste("downloading file",i,"of",nrow(wall_filtered),image_name))
     tryCatch({download.file(image_res,
                   paste0(FILE_DIR,"/",res,"/",image_name),
                   quiet=TRUE, mode="wb")},error=function(e){print('Remote File Does not Exist')})
