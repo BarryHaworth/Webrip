@@ -1,6 +1,6 @@
-#  Villainess 99
+#  Love After World Domination
 # First Story starts at:
-# https://ww7.mangakakalot.tv/chapter/manga-ih985416/chapter-0
+# https://ww7.mangakakalot.tv/chapter/manga-fs983301/chapter-1
 #
 # This code starts at the first page of a manga
 # and then crawl through it page by page to identify 
@@ -14,12 +14,11 @@ library(xml2)
 library(stringr)
 
 PROJECT_DIR <- "c:/R/Webrip"
-FILE_DIR    <- "c:/R/Webrip/villainess99"
+FILE_DIR    <- "c:/R/Webrip/loveafter"
 dir.create(FILE_DIR, showWarnings = FALSE)  # Create directory if it doesn't exist
 
 # First page of Manga
-url <- 'https://ww7.mangakakalot.tv/chapter/manga-ih985416/chapter-0'
-#url <- 'https://ww7.mangakakalot.tv/chapter/manga-ih985416/chapter-1'
+url <- 'https://ww7.mangakakalot.tv/chapter/manga-fs983301/chapter-1'
 
 rip_url <- function(url){
   chapter <- str_split_1(url,'/')[6]
@@ -27,8 +26,8 @@ rip_url <- function(url){
   next_xml <- xml_attrs(html_nodes(webpage,'.next'))
   if (length(next_xml)==2){
     next_url <- as.character(paste0('https://ww7.mangakakalot.tv',next_xml[[2]][1]))
-    } else if (length(next_xml)==4) {
-      next_url <- as.character(paste0('https://ww7.mangakakalot.tv',next_xml[[2]][1])) } else next_url <- ""
+  } else if (length(next_xml)==4) {
+    next_url <- as.character(paste0('https://ww7.mangakakalot.tv',next_xml[[2]][1])) } else next_url <- ""
   images <- data.frame()
   image_xml <- xml_attrs(html_nodes(webpage,'.img-loading'))
   for (i in seq(1,100)){
@@ -44,39 +43,39 @@ rip_url <- function(url){
 }
 
 # Read the existing data frame if it exists
-if (file.exists(paste0(PROJECT_DIR,"/villainess99.RData"))){
-  load(paste0(PROJECT_DIR,"/villainess99.RData"))
+if (file.exists(paste0(PROJECT_DIR,"/loveafter.RData"))){
+  load(paste0(PROJECT_DIR,"/loveafter.RData"))
 } else {
-  villainess99 <- rip_url(url)  # Save the first page
+  loveafter <- rip_url(url)  # Save the first page
 }
 
 # remove records which have no Next URL to allow 
-villainess99 <- villainess99 %>% filter(next_url!="")
+loveafter <- loveafter %>% filter(next_url!="")
 
 # How many pages total?  18 chapters plus extras
-for (i in seq(1:30)){
+for (i in seq(1:40)){
   tryCatch({
-    url <- tail(villainess99$next_url,1)
+    url <- tail(loveafter$next_url,1)
     if (nchar(url)>0){
       print(paste("Iteration",i,"Looking up page",url))
-      villainess99 <- rbind(villainess99,rip_url(url))
+      loveafter <- rbind(loveafter,rip_url(url))
     }
   })
 }
 
-villainess99 <- unique(villainess99)
-save(villainess99,file=paste0(PROJECT_DIR,"/villainess99.RData"))
+loveafter <- unique(loveafter)
+save(loveafter,file=paste0(PROJECT_DIR,"/loveafter.RData"))
 
 # Copy the images
 #Download the Images
-for (i in 1:nrow(villainess99)){
-  if (file.exists(paste0(FILE_DIR,"/",villainess99$chapter[i],"-",str_pad(villainess99$i[i],3,pad="0"),".jpg"))){
-    print(paste("File",villainess99$chapter[i],"image #",villainess99$i[i],"already downloaded"))
+for (i in 1:nrow(loveafter)){
+  if (file.exists(paste0(FILE_DIR,"/",loveafter$chapter[i],"-",str_pad(loveafter$i[i],3,pad="0"),".jpg"))){
+    print(paste("File",loveafter$chapter[i],"image #",loveafter$i[i],"already downloaded"))
   } else{
-    print(paste("downloading",villainess99$chapter[i],"image #",villainess99$i[i]))
-    try({download.file(villainess99$image[i],
-                  paste0(FILE_DIR,"/",villainess99$chapter[i],"-",str_pad(villainess99$i[i],3,pad="0"),".jpg"),
-                  quiet=TRUE, mode="wb")},silent=TRUE)
+    print(paste("downloading",loveafter$chapter[i],"image #",loveafter$i[i]))
+    download.file(loveafter$image[i],
+                  paste0(FILE_DIR,"/",loveafter$chapter[i],"-",str_pad(loveafter$i[i],3,pad="0"),".jpg"),
+                  quiet=TRUE, mode="wb")
   }
 }
 

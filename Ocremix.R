@@ -23,9 +23,11 @@ FILE_DIR    <- "c:/R/Webrip/OCRemix"
 #stop  = 4294 # Latest file as at 08/12/2021
 #start = 4295 # the next one that I don't have, 08/12/2021
 #stop  = 4307 # Latest file as at 08/12/2021
-start = 4308 # the next one that I don't have, 29/05/2022
+#start = 4308 # the next one that I don't have, 29/05/2022
 #stop  = 4346 # Latest file as at 08/12/2021
-stop  = 4486 # Latest file as at 22/09/2023
+#stop  = 4486 # Latest file as at 22/09/2023
+start = 4487 # the next one that I don't have, 01/03/2024
+stop  = 4586 # Latest file as at 01/03/2024
 
 # for testing
 d = start
