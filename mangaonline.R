@@ -24,7 +24,7 @@ rip_url <- function(url){
     next_url <- as.character(paste0('https://ww7.mangakakalot.tv',next_xml[[2]][1])) } else next_url <- ""
   images <- data.frame()
   image_xml <- xml_attrs(html_nodes(webpage,'.img-loading'))
-  for (i in seq(1,100)){
+  for (i in seq(1,999)){
     try({
       image <- as.character(image_xml[[i]][1])
       images <- rbind(images,data.frame(url,next_url,chapter,i,image,stringsAsFactors = F))
@@ -78,7 +78,7 @@ mangarip <- function(filename,url){
   #Download the Images
   for (i in 1:nrow(df)){
     if (file.exists(paste0(FILE_DIR,"/",df$chapter[i],"-",str_pad(df$i[i],3,pad="0"),".jpg"))){
-      print(paste("File",df$chapter[i],"image #",df$i[i],"already downloaded"))
+      # print(paste(filename,df$chapter[i],"image #",df$i[i],"already downloaded"))
     } else{
       print(paste("downloading",filename,df$chapter[i],"image #",df$i[i]))
       try({download.file(df$image[i],
@@ -93,11 +93,9 @@ mangarip <- function(filename,url){
 mangarip('villainess99','https://ww7.mangakakalot.tv/chapter/manga-ih985416/chapter-0')
 mangarip('delicious','https://ww7.mangakakalot.tv/chapter/manga-vs951827/chapter-0')
 mangarip('loveafter','https://ww7.mangakakalot.tv/chapter/manga-fs983301/chapter-1')
-#mangarip('savemyhusband','https://ww7.mangakakalot.tv/chapter/manga-kv987430/chapter-1')
 
 mangarip('notthehero','https://ww7.mangakakalot.tv/chapter/manga-nu990929/chapter-1')
 mangarip('bluehole'  ,'https://ww7.mangakakalot.tv/chapter/manga-ep981550/chapter-0')
-mangarip('notasupervillain','https://ww7.mangakakalot.tv/chapter/manga-og991741/chapter-1')
 mangarip('gate','https://ww7.mangakakalot.tv/chapter/manga-qp952972/chapter-1')
 
 mangarip('summerwars','https://ww7.mangakakalot.tv/chapter/manga-ok965693/chapter-1')
@@ -115,9 +113,24 @@ mangarip('myheroacademia','https://ww7.mangakakalot.tv/chapter/manga-jq951973/ch
 mangarip('onepiece','https://ww7.mangakakalot.tv/chapter/manga-aa951409/chapter-1.2')
 
 mangarip('mobpsycho','https://ww7.mangakakalot.tv/chapter/manga-ln951470/chapter-1')
-mangarip('onepunchman','https://ww7.mangakakalot.tv/chapter/manga-wd951838/chapter-1')
 mangarip('chainsawman','https://ww7.mangakakalot.tv/chapter/manga-dn980422/chapter-1')
 mangarip('rangerreject','https://ww7.mangakakalot.tv/chapter/manga-kd988138/chapter-1')
 
 mangarip('flymetothemoon','https://ww7.mangakakalot.tv/chapter/manga-bf978740/chapter-0.1')
 
+mangarip('reincarnatedasasword','https://ww7.mangakakalot.tv/chapter/manga-wg974263/chapter-1')
+
+mangarip('blueworld','https://ww7.mangakakalot.tv/chapter/manga-rq994799/chapter-1')
+mangarip('realisthero','https://ww7.mangakakalot.tv/chapter/manga-zb977136/chapter-1')
+
+mangarip('ghostline1','https://ww7.mangakakalot.tv/chapter/manga-xf1000988/chapter-1')
+mangarip('spiritsbnb','https://ww7.mangakakalot.tv/chapter/manga-bk979267/chapter-1')
+
+mangarip('archdemonsdilemma','https://ww8.mangakakalot.tv/chapter/manga-bi978917/chapter-1')
+mangarip('villainsdilemma','https://ww8.mangakakalot.tv/chapter/manga-ni991217/chapter-1')
+
+mangarip('dukeofdeath','https://ww8.mangakakalot.tv/chapter/manga-av977730/chapter-0')
+
+mangarip('onepunchman','https://ww7.mangakakalot.tv/chapter/manga-wd951838/chapter-1')
+mangarip('notasupervillain','https://ww7.mangakakalot.tv/chapter/manga-og991741/chapter-1')
+mangarip('psme','https://ww8.mangakakalot.tv/chapter/manga-je957461/chapter-0')
