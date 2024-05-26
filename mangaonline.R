@@ -21,7 +21,8 @@ rip_url <- function(url){
   if (length(next_xml)==2){
     next_url <- as.character(paste0('https://ww7.mangakakalot.tv',next_xml[[2]][1]))
   } else if (length(next_xml)==4) {
-    next_url <- as.character(paste0('https://ww7.mangakakalot.tv',next_xml[[2]][1])) } else next_url <- ""
+    next_url <- as.character(paste0('https://ww7.mangakakalot.tv',next_xml[[2]][1])) 
+  } else next_url <- ""
   images <- data.frame()
   image_xml <- xml_attrs(html_nodes(webpage,'.img-loading'))
   for (i in seq(1,999)){
@@ -49,7 +50,7 @@ mangarip <- function(filename,url){
   }
   
   # remove records which have no Next URL to allow 
-  df <- df %>% filter(next_url!="")
+  df <- df %>% filter((url==url)|(next_url!=""))
   df <- unique(df)
   
   continue=TRUE
@@ -67,7 +68,7 @@ mangarip <- function(filename,url){
         df <- unique(df)
         save(df,file=paste0(PROJECT_DIR,"/",filename,".RData"))
         if (nrow(df)==rows) continue <- FALSE
-      }
+      } else continue <- FALSE
     })
   }
   
@@ -134,3 +135,26 @@ mangarip('dukeofdeath','https://ww8.mangakakalot.tv/chapter/manga-av977730/chapt
 mangarip('onepunchman','https://ww7.mangakakalot.tv/chapter/manga-wd951838/chapter-1')
 mangarip('notasupervillain','https://ww7.mangakakalot.tv/chapter/manga-og991741/chapter-1')
 mangarip('psme','https://ww8.mangakakalot.tv/chapter/manga-je957461/chapter-0')
+
+mangarip('married100','https://ww8.mangakakalot.tv/chapter/manga-hs984975/chapter-1')
+
+mangarip('onesummer','https://ww8.mangakakalot.tv/chapter/manga-sa996235/chapter-1')
+
+mangarip('commonisekai','https://ww8.mangakakalot.tv/chapter/manga-tf996614/chapter-1')
+mangarip('invisibledetective','https://ww8.mangakakalot.tv/chapter/manga-qz993482/chapter-1')
+
+mangarip('gurrenlagaan','https://ww8.mangakakalot.tv/chapter/manga-nr964752/chapter-1')
+
+# Nagame Manga
+mangarip('invisiblepeople','https://ww8.mangakakalot.tv/chapter/manga-ei982065/chapter-1')
+
+mangarip('liarprincess',  'https://ww8.mangakakalot.tv/chapter/manga-co979671/chapter-1')
+mangarip('monotoneblue',  'https://ww8.mangakakalot.tv/chapter/manga-nf990414/chapter-1')
+mangarip('wizewizebeasts','https://ww8.mangakakalot.tv/chapter/manga-fa983257/chapter-0.1')
+mangarip('girlfromtheotherside','https://ww8.mangakakalot.tv/chapter/manga-df980440/chapter-1')
+
+# One Shots
+mangarip('untiltomorrow','https://ww8.mangakakalot.tv/chapter/manga-vm973147/chapter-1')
+mangarip('manwolfandwolfgirl','https://ww8.mangakakalot.tv/chapter/manga-wx973406/chapter-1')
+mangarip('midnightwaltz','https://ww8.mangakakalot.tv/chapter/manga-ay977807/chapter-1')
+
