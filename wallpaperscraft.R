@@ -22,7 +22,7 @@ dir.create(FILE_DIR,showWarnings = FALSE)
 
 start <- 1
 # stop  <- 9345 # As at 06/07/2023
-stop  <- 9725 # As at 08/02/2024
+stop  <- 9840 # As at 26/06/2024
 
 # Test URL
 url <- 'https://wallpaperscraft.com/all/page2'

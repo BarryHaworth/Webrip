@@ -145,6 +145,8 @@ mangarip('invisibledetective','https://ww8.mangakakalot.tv/chapter/manga-qz99348
 
 mangarip('gurrenlagaan','https://ww8.mangakakalot.tv/chapter/manga-nr964752/chapter-1')
 
+mangarip('quintessential','https://ww8.mangakakalot.tv/chapter/manga-xj974944/chapter-0.1')
+
 # Nagame Manga
 mangarip('invisiblepeople','https://ww8.mangakakalot.tv/chapter/manga-ei982065/chapter-1')
 
@@ -158,3 +160,12 @@ mangarip('untiltomorrow','https://ww8.mangakakalot.tv/chapter/manga-vm973147/cha
 mangarip('manwolfandwolfgirl','https://ww8.mangakakalot.tv/chapter/manga-wx973406/chapter-1')
 mangarip('midnightwaltz','https://ww8.mangakakalot.tv/chapter/manga-ay977807/chapter-1')
 
+# Miyazaki
+mangarip('shunanotabi','https://ww8.mangakakalot.tv/chapter/manga-om965769/chapter-1')
+mangarip('spiritedaway','https://ww8.mangakakalot.tv/chapter/manga-qk968067/chapter-1')
+mangarip('mononoke','https://ww8.mangakakalot.tv/chapter/manga-qx968306/chapter-1.11')
+mangarip('howlsmovingcastle','https://ww8.mangakakalot.tv/chapter/manga-sg969863/chapter-1.1')
+
+mangarip('spyxfamily','https://ww8.mangakakalot.tv/chapter/manga-em981495/chapter-1')
+mangarip('weddingrings','https://ww8.mangakakalot.tv/chapter/manga-jb954858/chapter-1')
+mangarip('duskmaiden','https://ww8.mangakakalot.tv/chapter/manga-ny955333/chapter-0')

@@ -56,3 +56,21 @@ mangazip('villainsdilemma')
 mangazip('ghostline1')
 
 mangazip('psme',per_vol=1)
+
+mangazip('quintessential')
+
+mangazip('invisiblepeople')
+
+mangazip('liarprincess')
+mangazip('monotoneblue')
+mangazip('wizewizebeasts')
+mangazip('girlfromtheotherside')
+
+# One Shots
+mangazip('untiltomorrow')
+mangazip('manwolfandwolfgirl')
+mangazip('midnightwaltz')
+
+# Manga4Life zips
+PROJECT_DIR <- "c:/R/Webrip/Manga4Life"
+mangazip('Kumo-Desu-Ga-Nani-Ka')
