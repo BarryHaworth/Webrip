@@ -129,6 +129,11 @@ manga4rip('Spy-X-Family')
 manga4rip('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
 manga4rip('Tonikaku-Kawaii')      # Fly Me to the Moon
 manga4rip('One-Piece')
+manga4rip('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
+manga4rip('Handyman-Saitou-In-Another-World')
+manga4rip('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
+manga4rip('I-Was-A-Sword-When-I-Reincarnated')
+manga4rip('Reincarnated-as-a-Sword-Another-Wish')
 
 # Check 'em
 manga4check('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
@@ -137,6 +142,10 @@ manga4check('Spy-X-Family')
 manga4check('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
 manga4check('Tonikaku-Kawaii')      # Fly Me to the Moon
 manga4check('One-Piece')
+manga4check('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
+manga4check('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
+manga4check('I-Was-A-Sword-When-I-Reincarnated')
+manga4check('Reincarnated-as-a-Sword-Another-Wish')
 
 # Zip 'em
 manga4zip('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
@@ -145,3 +154,8 @@ manga4zip('Spy-X-Family')
 manga4zip('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
 manga4zip('Tonikaku-Kawaii')      # Fly Me to the Moon
 manga4zip('One-Piece')
+manga4zip('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
+manga4zip('Handyman-Saitou-In-Another-World')
+manga4zip('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
+manga4zip('I-Was-A-Sword-When-I-Reincarnated')
+manga4zip('Reincarnated-as-a-Sword-Another-Wish')

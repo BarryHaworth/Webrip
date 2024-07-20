@@ -58,6 +58,7 @@ mangazip('ghostline1')
 mangazip('psme',per_vol=1)
 
 mangazip('quintessential')
+mangazip('weddingrings')
 
 mangazip('invisiblepeople')
 
