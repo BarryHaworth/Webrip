@@ -9,6 +9,8 @@
 #   Some manga skip chapters (no Tonikaku Kawaii chapter 168)
 #   Incrementing numbers misses special chapters (chapter n.5)
 #   Different manga have different image host address.  Some have more than one.
+# Update 05/08/2024
+#   Added check to only update cbz files if the images were newer than the file
 
 library(rvest)
 library(dplyr)
@@ -70,6 +72,8 @@ manga4rip <- function(manga){
         }
       }
     }
+  } else {
+    print(paste("All Chapters of",manga,"have been downloaded"))
   }
   
   # Chapter check - check which chapters have been downloaded.
@@ -108,17 +112,28 @@ manga4zip <- function(manga,per_vol=5){
   SAVE_DIR <- paste0(BOOK_DIR,"/",manga)
   dir.create(SAVE_DIR, showWarnings = FALSE)  # Create directory if it doesn't exist
   # Get list of files
-  images = list.files(FILE_DIR)
+  setwd(FILE_DIR)
+  images = list.files()
+  images_ds <- file.info(images)
   # Identify Chapters
   chapters = as.numeric(word(images,1,sep="-"))
   volumes = ceiling(chapters/per_vol)
   # Assign chapter 0 to volume 1
   volumes[volumes==0] <- 1
+  images_ds$chapter <- chapters
+  images_ds$volume <- volumes
   # Zip chapters into volumes based on the breaks
   for (volume in 1:max(volumes)){
+    image_date <- max(images_ds$mtime[images_ds$volume==volume])
     zipfile <- paste0(SAVE_DIR,"/",manga,"-",str_pad(volume,2,pad="0"),".cbz")
-    print(paste(manga,"Volume",volume,"of",max(volumes),"file =",zipfile))
-    zip::zip(zipfile,images[volumes==volume],root=FILE_DIR)
+    if (file.exists(zipfile)){zip_date <- file.info(zipfile)$mtime} else {zip_date<-0}
+    if (image_date>zip_date){
+      print(paste("Zipping",manga,"Volume",volume,"of",max(volumes),"file =",zipfile))
+      zip::zip(zipfile,images[volumes==volume],root=FILE_DIR)
+    } else {
+      print(paste(manga,"Volume",volume,"of",max(volumes),"file =",zipfile,"Up to date"))
+      
+    }
   }
 }
 
@@ -134,18 +149,24 @@ manga4rip('Handyman-Saitou-In-Another-World')
 manga4rip('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
 manga4rip('I-Was-A-Sword-When-I-Reincarnated')
 manga4rip('Reincarnated-as-a-Sword-Another-Wish')
+manga4rip('Bonnouji')
+manga4rip('Mob-Psycho100')
+manga4rip('Chainsaw-Man')
+manga4rip('Boku-No-Hero-Academia')
+manga4rip('Akuyaku-Reijou-Tensei-Oji-san')
 
 # Check 'em
-manga4check('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
-manga4check('The-Invisible-Man-and-His-Soon-toBe-Wife')
-manga4check('Spy-X-Family')
-manga4check('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
-manga4check('Tonikaku-Kawaii')      # Fly Me to the Moon
-manga4check('One-Piece')
-manga4check('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
-manga4check('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
-manga4check('I-Was-A-Sword-When-I-Reincarnated')
-manga4check('Reincarnated-as-a-Sword-Another-Wish')
+#manga4check('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
+#manga4check('The-Invisible-Man-and-His-Soon-toBe-Wife')
+#manga4check('Spy-X-Family')
+#manga4check('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
+#manga4check('Tonikaku-Kawaii')      # Fly Me to the Moon
+#manga4check('One-Piece')
+#manga4check('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
+#manga4check('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
+#manga4check('I-Was-A-Sword-When-I-Reincarnated')
+#manga4check('Reincarnated-as-a-Sword-Another-Wish')
+#manga4check('Akuyaku-Reijou-Tensei-Oji-san')
 
 # Zip 'em
 manga4zip('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
@@ -159,3 +180,8 @@ manga4zip('Handyman-Saitou-In-Another-World')
 manga4zip('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
 manga4zip('I-Was-A-Sword-When-I-Reincarnated')
 manga4zip('Reincarnated-as-a-Sword-Another-Wish')
+manga4zip('Bonnouji')
+manga4zip('Mob-Psycho100')
+manga4zip('Chainsaw-Man')
+manga4zip('Boku-No-Hero-Academia')
+manga4zip('Akuyaku-Reijou-Tensei-Oji-san')
