@@ -33,7 +33,7 @@ rip_url <- function(url){
   return(results)
 }
 
-mangafile <- function(filename,url){
+mangafire <- function(filename,url){
   PROJECT_DIR <- "c:/R/Webrip/Manga"
   FILE_DIR    <- paste0(PROJECT_DIR,"/",filename)
   dir.create(FILE_DIR, showWarnings = FALSE)  # Create directory if it doesn't exist
@@ -88,3 +88,4 @@ mangafile <- function(filename,url){
 
 
 mangafire('elfbride','https://mangafire.to/read/maou-no-ore-ga-dorei-elf-wo-yome-ni-shitanda-ga-dou-medereba-ii.2lv2/en/chapter-1')
+mangafire('magiciansnephew','https://mangafire.to/read/narnia-koku-monogatari.7w556/en/chapter-1') # - did not work

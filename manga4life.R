@@ -137,6 +137,12 @@ manga4zip <- function(manga,per_vol=5){
   }
 }
 
+manga4life <- function(manga){
+  manga4rip(manga)
+  manga4zip(manga)
+}
+
+
 # Rip 'em
 manga4rip('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
 manga4rip('The-Invisible-Man-and-His-Soon-toBe-Wife')
@@ -154,6 +160,9 @@ manga4rip('Mob-Psycho100')
 manga4rip('Chainsaw-Man')
 manga4rip('Boku-No-Hero-Academia')
 manga4rip('Akuyaku-Reijou-Tensei-Oji-san')
+manga4rip('Tongari-Booshi-No-Atorie') # Witch Hat Atelier
+manga4rip('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
+manga4rip('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion')
 
 # Check 'em
 #manga4check('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
@@ -185,3 +194,12 @@ manga4zip('Mob-Psycho100')
 manga4zip('Chainsaw-Man')
 manga4zip('Boku-No-Hero-Academia')
 manga4zip('Akuyaku-Reijou-Tensei-Oji-san')
+manga4zip('Tongari-Booshi-No-Atorie') # Witch Hat Atelier
+manga4zip('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
+manga4zip('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion')
+
+# Gotta Catch 'em all
+manga4life('Solo-Leveling')
+manga4life('Solo-Leveling-Volume-Version')
+manga4life('Solo-Leveling-Ragnarok')
+
