@@ -131,8 +131,7 @@ manga4zip <- function(manga,per_vol=5){
       print(paste("Zipping",manga,"Volume",volume,"of",max(volumes),"file =",zipfile))
       zip::zip(zipfile,images[volumes==volume],root=FILE_DIR)
     } else {
-      print(paste(manga,"Volume",volume,"of",max(volumes),"file =",zipfile,"Up to date"))
-      
+      #print(paste(manga,"Volume",volume,"of",max(volumes),"file =",zipfile,"Up to date"))
     }
   }
 }
@@ -144,62 +143,33 @@ manga4life <- function(manga){
 
 
 # Rip 'em
-manga4rip('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
-manga4rip('The-Invisible-Man-and-His-Soon-toBe-Wife')
-manga4rip('Spy-X-Family')
-manga4rip('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
-manga4rip('Tonikaku-Kawaii')      # Fly Me to the Moon
-manga4rip('One-Piece')
-manga4rip('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
-manga4rip('Handyman-Saitou-In-Another-World')
-manga4rip('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
-manga4rip('I-Was-A-Sword-When-I-Reincarnated')
-manga4rip('Reincarnated-as-a-Sword-Another-Wish')
-manga4rip('Bonnouji')
-manga4rip('Mob-Psycho100')
-manga4rip('Chainsaw-Man')
-manga4rip('Boku-No-Hero-Academia')
-manga4rip('Akuyaku-Reijou-Tensei-Oji-san')
-manga4rip('Tongari-Booshi-No-Atorie') # Witch Hat Atelier
-manga4rip('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
-manga4rip('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion')
-
-# Check 'em
-#manga4check('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
-#manga4check('The-Invisible-Man-and-His-Soon-toBe-Wife')
-#manga4check('Spy-X-Family')
-#manga4check('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
-#manga4check('Tonikaku-Kawaii')      # Fly Me to the Moon
-#manga4check('One-Piece')
-#manga4check('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
-#manga4check('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
-#manga4check('I-Was-A-Sword-When-I-Reincarnated')
-#manga4check('Reincarnated-as-a-Sword-Another-Wish')
-#manga4check('Akuyaku-Reijou-Tensei-Oji-san')
-
-# Zip 'em
-manga4zip('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
-manga4zip('The-Invisible-Man-and-His-Soon-toBe-Wife')
-manga4zip('Spy-X-Family')
-manga4zip('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
-manga4zip('Tonikaku-Kawaii')      # Fly Me to the Moon
-manga4zip('One-Piece')
-manga4zip('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
-manga4zip('Handyman-Saitou-In-Another-World')
-manga4zip('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
-manga4zip('I-Was-A-Sword-When-I-Reincarnated')
-manga4zip('Reincarnated-as-a-Sword-Another-Wish')
-manga4zip('Bonnouji')
-manga4zip('Mob-Psycho100')
-manga4zip('Chainsaw-Man')
-manga4zip('Boku-No-Hero-Academia')
-manga4zip('Akuyaku-Reijou-Tensei-Oji-san')
-manga4zip('Tongari-Booshi-No-Atorie') # Witch Hat Atelier
-manga4zip('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
-manga4zip('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion')
-
 # Gotta Catch 'em all
+manga4life('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
+manga4life('The-Invisible-Man-and-His-Soon-toBe-Wife')
+manga4life('Spy-X-Family')
+manga4life('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
+manga4life('Tonikaku-Kawaii')      # Fly Me to the Moon
+manga4life('One-Piece')
+manga4life('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
+manga4life('Handyman-Saitou-In-Another-World')
+manga4life('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
+manga4life('I-Was-A-Sword-When-I-Reincarnated')
+manga4life('Reincarnated-as-a-Sword-Another-Wish')
+manga4life('Bonnouji')
+manga4life('Mob-Psycho100')
+manga4life('Chainsaw-Man')
+manga4life('Boku-No-Hero-Academia')
+manga4life('Akuyaku-Reijou-Tensei-Oji-san')
+manga4life('Tongari-Booshi-No-Atorie') # Witch Hat Atelier
+manga4life('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
+manga4life('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion')
 manga4life('Solo-Leveling')
 manga4life('Solo-Leveling-Volume-Version')
 manga4life('Solo-Leveling-Ragnarok')
-
+#manga4life('Tengen-Toppa-Gurren-Lagann')
+manga4life('Steins-Gate')
+manga4life('Bokurano')
+manga4life('Kill-La-Kill')
+manga4life('Kimi-No-Na-Wa')  # Your Name
+manga4life('Neon-Genesis-Evangelion')
+manga4life('Kekkon-Surutte-Hontou-desu-ka-365-Days-to-the-Wedding')
