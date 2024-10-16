@@ -35,6 +35,7 @@ manga4rip <- function(manga){
     mutate(chapter = word(item_title,-1),
            chap_num=as.numeric(chapter)) %>%
     arrange(chap_num)
+  max_chap <- max(as.numeric(chapters$chapter))
   # Identify downloaded Chapters
   images = list.files(FILE_DIR)
   saved = as.numeric(word(images,1,sep="-")) %>% unique()
@@ -61,7 +62,7 @@ manga4rip <- function(manga){
           if (file.exists(paste0(FILE_DIR,"/",file_name))){
             # print(paste("File",file_name,"already exists"))
           } else {
-            print(paste("Downloading",manga,"Chapter",chapter,"page",page))
+            print(paste("Downloading",manga,"Chapter",chapter,"of",max_chap,"page",page))
             t <- try({download.file(url,
                                     paste0(FILE_DIR,"/",file_name),
                                     quiet=TRUE, mode="wb")}, silent = TRUE )
@@ -144,32 +145,52 @@ manga4life <- function(manga){
 
 # Rip 'em
 # Gotta Catch 'em all
-manga4life('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
-manga4life('The-Invisible-Man-and-His-Soon-toBe-Wife')
-manga4life('Spy-X-Family')
-manga4life('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
-manga4life('Tonikaku-Kawaii')      # Fly Me to the Moon
-manga4life('One-Piece')
-manga4life('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
-manga4life('Handyman-Saitou-In-Another-World')
-manga4life('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
-manga4life('I-Was-A-Sword-When-I-Reincarnated')
-manga4life('Reincarnated-as-a-Sword-Another-Wish')
-manga4life('Bonnouji')
-manga4life('Mob-Psycho100')
-manga4life('Chainsaw-Man')
-manga4life('Boku-No-Hero-Academia')
-manga4life('Akuyaku-Reijou-Tensei-Oji-san')
-manga4life('Tongari-Booshi-No-Atorie') # Witch Hat Atelier
-manga4life('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
-manga4life('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion')
-manga4life('Solo-Leveling')
-manga4life('Solo-Leveling-Volume-Version')
-manga4life('Solo-Leveling-Ragnarok')
 #manga4life('Tengen-Toppa-Gurren-Lagann')
-manga4life('Steins-Gate')
+manga4life('Akuyaku-Reijou-Tensei-Oji-san')
+manga4life('Boku-No-Hero-Academia')
 manga4life('Bokurano')
+manga4life('Bonnouji')
+manga4life('Chainsaw-Man')
+manga4life('Dungeon-Meshi')
+manga4life('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
+manga4life('Handyman-Saitou-In-Another-World')
+manga4life('I-Was-A-Sword-When-I-Reincarnated')
+manga4life('Kaguya-Wants-To-Be-Confessed-To')  # Kaguya-sama  - Love is War
+manga4life('Kekkon-Surutte-Hontou-desu-ka-365-Days-to-the-Wedding')
 manga4life('Kill-La-Kill')
 manga4life('Kimi-No-Na-Wa')  # Your Name
+manga4life('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
+manga4life('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
+manga4life('Look-Back')
+manga4life('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
+manga4life('Made-In-Abyss')
+manga4life('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
+manga4life('Mob-Psycho100')
+manga4life('Monster-8')  # Kaiju No 8
+manga4life('Moon-Led-Journey-Across-Another-World')  # Moonlit Fantasy
 manga4life('Neon-Genesis-Evangelion')
-manga4life('Kekkon-Surutte-Hontou-desu-ka-365-Days-to-the-Wedding')
+manga4life('One-Piece')
+manga4life('Onepunch-Man')
+manga4life('Planetes')
+manga4life('Reincarnated-as-a-Sword-Another-Wish')
+manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu-Daiisshou-Outo-No-Ichinichi-Hen') # Re Zero Chapter 1
+manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu')                                 # Re Zero Chapter 2
+manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu-Daisanshou-Truth-Of-Zero')        # Re Zero Chapter 3
+manga4life('ReZero-kara-Hajimeru-Isekai-Seikatsu-Daiyonshou-Seiiki-to-Gouyoku-no-Majou') # Re Zero Chapter 4
+manga4life('ReZERO-Starting-Life-in-Another-World-The-Frozen-Bond')
+manga4life('Solo-Leveling')
+manga4life('Solo-Leveling-Ragnarok')
+manga4life('Solo-Leveling-Volume-Version')
+manga4life('Spy-X-Family')
+manga4life('Steins-Gate')
+manga4life('The-Invisible-Man-and-His-Soon-toBe-Wife')
+manga4life('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion')
+manga4life('Tongari-Booshi-No-Atorie') # Witch Hat Atelier
+manga4life('Tonikaku-Kawaii')          # Fly Me to the Moon
+manga4life('Uzumaki')
+manga4life('Villainess-Level-99')
+
+# Update the remote Books
+system2("C:/Program Files/FreeFileSync/Bin/FreeFileSync_x64.exe",
+        "C:/Users/barry/Documents/Book_sync.ffs_batch",
+        wait=FALSE, invisible=FALSE)
