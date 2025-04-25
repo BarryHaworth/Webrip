@@ -88,13 +88,22 @@ del_files <- full_melt %>% filter(keyword %in% keywords) %>% select(thumbnail) %
 
 wall_filtered <- wall_names %>% anti_join(del_files,by="thumbnail")
 
-#Resolution
+# Add image ID number and sort on this column
+wall_filtered <- wall_filtered %>% 
+  separate_wider_delim(file_name,delim="_",
+                       names=c("key1","key2","key3","key4","key5","key6","key7","key8","key9","key10","key11","key12","image_id","res"),
+                       too_few="align_end",too_many="drop") %>%
+  mutate(image_id = as.numeric(image_id)) %>%
+  arrange(image_id) %>%
+  select(thumbnail,image_id)
+  
+# Resolution
 res <- "1080x1920"  # Phone Resolution
 # res <- "1920x1200"  # tablet resolution
 # res <- "1920x1080"  # hi-res resolution
 # res <- "2160x1620"  # iPad resolution
 
-# Download the files (in reverse order)
+# Download the files (in reverse order to get the new ones first.)
 for (i in nrow(wall_filtered):1){
   thumbnail <- wall_filtered$thumbnail[i]
   # Get the address for the resolution we want
