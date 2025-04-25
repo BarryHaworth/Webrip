@@ -10,6 +10,7 @@ library(xml2)
 library(stringr)
 
 url <- 'https://mangafire.to/read/maou-no-ore-ga-dorei-elf-wo-yome-ni-shitanda-ga-dou-medereba-ii.2lv2/en/chapter-1'
+url <- 'https://mangafire.to/read/jeonjijeok-dokja-sijeomm.5k9q/en/chapter-0'
 
 rip_url <- function(url){
   chapter <- str_split_1(url,'/')[7]
@@ -87,5 +88,6 @@ mangafire <- function(filename,url){
 }
 
 
-mangafire('elfbride','https://mangafire.to/read/maou-no-ore-ga-dorei-elf-wo-yome-ni-shitanda-ga-dou-medereba-ii.2lv2/en/chapter-1')
+mangafire('elfbride','https://mangafire.to/read/maou-no-ore-ga-dorei-elf-wo-yome-ni-shitanda-ga-dou-medereba-ii.2lv2/en/chapter-1') # no longer works
 mangafire('magiciansnephew','https://mangafire.to/read/narnia-koku-monogatari.7w556/en/chapter-1') # - did not work
+mangafire('omniscientreader','https://mangafire.to/read/jeonjijeok-dokja-sijeomm.5k9q/en/chapter-0') # - did not work

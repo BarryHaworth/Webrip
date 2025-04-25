@@ -22,7 +22,8 @@ dir.create(FILE_DIR,showWarnings = FALSE)
 
 start <- 1
 # stop  <- 9345 # As at 06/07/2023
-stop  <- 9840 # As at 26/06/2024
+# stop  <- 9840 # As at 26/06/2024
+stop  <- 10042 # As at 23/04/2025
 
 # Test URL
 url <- 'https://wallpaperscraft.com/all/page2'
@@ -40,14 +41,20 @@ if (file.exists(paste0(PROJECT_DIR,"/wallpaperscraft.RData"))){
   wallpaperscraft <- rip_url('https://wallpaperscraft.com/all/page1')  # Initialise with  first page
 }
 
-for (i in start:stop){
+cume <- 0
+
+for (i in stop:start){
+  before <- nrow(wallpaperscraft)
   url <- paste0('https://wallpaperscraft.com/all/page',i)
-  print(paste("Ripping page",i,"url",url))
+  cat(paste("Ripping page",i,"url",url))
   thumbs <- tryCatch({rip_url(url)},error=function(e){}) 
-  wallpaperscraft <- rbind(wallpaperscraft,thumbs)
+  wallpaperscraft <- rbind(wallpaperscraft,thumbs) %>% unique()
+  after <- nrow(wallpaperscraft)
+  added <- after-before
+  cume <- cume+added
+  cat(paste(" Added",added,"images, cume",cume,'\n'))
 }
 
-wallpaperscraft <- wallpaperscraft %>% unique()
 save(wallpaperscraft,file=paste0(PROJECT_DIR,"/wallpaperscraft.RData"))
 
 # Filter unwanted files
@@ -87,8 +94,8 @@ res <- "1080x1920"  # Phone Resolution
 # res <- "1920x1080"  # hi-res resolution
 # res <- "2160x1620"  # iPad resolution
 
-# Download the files
-for (i in 1:nrow(wall_filtered)){
+# Download the files (in reverse order)
+for (i in nrow(wall_filtered):1){
   thumbnail <- wall_filtered$thumbnail[i]
   # Get the address for the resolution we want
   image_res <- paste0(strtrim(wall_filtered$thumbnail[i],nchar(wall_filtered$thumbnail[i])-11),res,".jpg")  
@@ -98,9 +105,10 @@ for (i in 1:nrow(wall_filtered)){
   if (file.exists(paste0(FILE_DIR,"/",res,"/",image_name))){
     #print(paste("File",paste0(FILE_DIR,"/",image_name),"Already Exists"))
   } else{
-    print(paste("downloading file",i,"of",nrow(wall_filtered),image_name))
+    cat(paste("downloading file",i,"of",nrow(wall_filtered),image_name))
     tryCatch({download.file(image_res,
                   paste0(FILE_DIR,"/",res,"/",image_name),
-                  quiet=TRUE, mode="wb")},error=function(e){print('Remote File Does not Exist')})
+                  quiet=TRUE, mode="wb")},error=function(e){cat(' - Remote File Does not Exist')})
+    cat('\n')
   }
 }

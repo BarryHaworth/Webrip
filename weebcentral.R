@@ -14,6 +14,7 @@
 #   Added check to only update cbz files if the images were newer than the file
 # Update 04/02/2025
 #   Web site has changed.  Will have to redo this.
+# New web site:  https://weebcentral.com/
 
 library(rvest)
 library(dplyr)
@@ -24,13 +25,16 @@ library(tidyRSS)
 PROJECT_DIR <- "c:/R/Webrip/Manga4Life"
 BOOK_DIR    <- "f:/books/comics/Manga4Life"
 
-manga4rip <- function(manga){
+# test
+manga <-'Spy-X-Family'
+home <-'https://weebcentral.com/series/01J76XYCYJ0P680SKX3QZ0NQD7'
+
+manga4rip <- function(manga,rss){
   FILE_DIR    <- paste0(PROJECT_DIR,"/",manga)
   dir.create(PROJECT_DIR, showWarnings = FALSE)  # Create directory if it doesn't exist
   dir.create(FILE_DIR,    showWarnings = FALSE)  # Create directory if it doesn't exist
   
-  homepage <- paste0('https://weebcentral.com/manga/',manga)
-  rss <- paste0('https://weebcentral.com/rss/',manga,'.xml')
+  homepage <- home
   feed <- tidyfeed(rss,parse_dates = FALSE)
   # Get the list of chapters from the feed
   chapters <- feed %>% 
@@ -144,84 +148,93 @@ manga4zip <- function(manga,per_vol=5){
   }
 }
 
-manga4life <- function(manga){
-  manga4rip(manga)
+manga4life <- function(manga,home){
+  manga4rip(manga,home)
   manga4zip(manga)
 }
 
 
 # Rip 'em
 # Gotta Catch 'em all
-#manga4life('Tengen-Toppa-Gurren-Lagann')
-manga4life('Akuyaku-Reijou-Tensei-Oji-san') # Middle Aged Villainess
-manga4life('Boku-No-Hero-Academia')
-manga4life('Bokurano')
-manga4life('Bonnouji')
-manga4life('Chainsaw-Man')
-manga4life('Dandadan')
-manga4life('Dungeon-Meshi')
-manga4life('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
-manga4life('Handyman-Saitou-In-Another-World')
-manga4life('I-Was-A-Sword-When-I-Reincarnated')
-manga4life('Kaguya-Wants-To-Be-Confessed-To')  # Kaguya-sama  - Love is War
-manga4life('Kekkon-Surutte-Hontou-desu-ka-365-Days-to-the-Wedding')
-manga4life('Kill-La-Kill')
-manga4life('Kimi-No-Na-Wa')  # Your Name
-manga4life('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
-manga4life('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
-manga4life('Look-Back')
-manga4life('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
-manga4life('Made-In-Abyss')
-manga4life('Mahou-Tsukai-No-Yome') # The Ancient Magus Bride
-manga4life('Mob-Psycho100')
-manga4life('Monster-8')  # Kaiju No 8
-manga4life('Moon-Led-Journey-Across-Another-World')  # Moonlit Fantasy
-manga4life('Neon-Genesis-Evangelion')
-manga4life('One-Piece')
-manga4life('Onepunch-Man')
-manga4life('Planetes')
-manga4life('Reincarnated-as-a-Sword-Another-Wish')
-manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu-Daiisshou-Outo-No-Ichinichi-Hen') # Re Zero Chapter 1
-manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu')                                 # Re Zero Chapter 2
-manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu-Daisanshou-Truth-Of-Zero')        # Re Zero Chapter 3
-manga4life('ReZero-kara-Hajimeru-Isekai-Seikatsu-Daiyonshou-Seiiki-to-Gouyoku-no-Majou') # Re Zero Chapter 4
-manga4life('ReZERO-Starting-Life-in-Another-World-The-Frozen-Bond')
-manga4life('S-rank-Monster-No-Behemoth-Dakedo')
-manga4life('Solo-Leveling')
-manga4life('Solo-Leveling-Ragnarok')
-manga4life('Solo-Leveling-Volume-Version')
-manga4life('Spy-X-Family')
-manga4life('Steins-Gate')
-manga4life('The-Invisible-Man-and-His-Soon-toBe-Wife')
-manga4life('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion')
-manga4life('Tongari-Booshi-No-Atorie') # Witch Hat Atelier
-manga4life('Tonikaku-Kawaii')          # Fly Me to the Moon
-manga4life('Uzumaki')
-manga4life('Villainess-Level-99')
 
-manga4life('Kimi-Ni-Todoke') # From Me to You
-manga4life('The-Dark-Magician-Transmigrates-After-66666-Years')
+manga4life('Spy-X-Family','https://weebcentral.com/series/01J76XYCYJ0P680SKX3QZ0NQD7/rss')
 
-manga4life('Spider-Man')
-manga4life('Spider-Man-Fake-Red')
-manga4life('Star-Wars-The-Mandalorian')
-manga4life('Star-Wars-Visions-The-Manga-Anthology')
+manga4life('Akuyaku-Reijou-Tensei-Oji-san','https://weebcentral.com/series/01J76XYDV4HW5A58SY3V7X8CNJ/rss') # Middle Aged Villainess
+manga4life('One-Piece','https://weebcentral.com/series/01J76XY7E9FNDZ1DBBM6PBJPFK/rss')
 
-manga4life('Zetman')
-manga4life('Ratman')
-manga4life('Heroic-Complex')
-manga4life('SHY')
-manga4life('Deadpool-Samurai')
-manga4life('Zannen-Jokanbu-Black-General-san')
-manga4life('Ranger-Reject')
+manga4life('Mahou-Tsukai-No-Yome','https://weebcentral.com/series/01J76XYA4AVQG9FK53NGCE8FW6/rss') # The Ancient Magus Bride
+manga4life('Mob-Psycho100','https://weebcentral.com/series/01J76XY9WY1HW989FW5G9ZYE9G/rss')
+manga4life('Made-In-Abyss','https://weebcentral.com/series/01J76XYC5Q6HXQV8A3W4A0KVKN/rss')
+manga4life('Monster-8','https://weebcentral.com/series/01J76XYDNXNEJ72V8B63390CNT/rss')  # Kaiju No 8
+manga4life('The-Invisible-Man-and-His-Soon-toBe-Wife','https://weebcentral.com/series/01J76XYG0GCHNTGDDNSQZPXKPT/rss')
+manga4life('Tonikaku-Kawaii','https://weebcentral.com/series/01J76XYCFK6GNRF6H17BZTKH2K/rss')          # Fly Me to the Moon
+manga4life('Zetman','https://weebcentral.com/series/01J76XY7FR7KTEF8CK9VY6VXGC/rss')
+manga4life('Ratman','https://weebcentral.com/series/01J76XY7NM74C6R63XGB8Y8MFM/rss')
+manga4life('Heroic-Complex','https://weebcentral.com/series/01J76XYE53DNAW4JQF40613HQP/rss')
+manga4life('SHY','https://weebcentral.com/series/01J76XYDXQGMXT06B1923YPVFC/rss')
+manga4life('Deadpool-Samurai','https://weebcentral.com/series/01J76XYECDYP63HB480B0RJS0D/rss')
+manga4life('Zannen-Jokanbu-Black-General-san','https://weebcentral.com/series/01J76XYBZ42J830YYVAFHBQGQW/rss')
+manga4life('Ranger-Reject','https://weebcentral.com/series/01J76XYED6E0G8RYGGFDQ4EZTG/rss')
+manga4life('Boku-No-Hero-Academia','https://weebcentral.com/series/01J76XYAE4S59RVPJETN0MFRX5/rss')
 
-#manga4life('Seijo-no-Maryoku-wa-Bannou-Desu')
-#manga4life('The-Saints-Magic-Power-is-Omnipotent-The-Other-Saint')
 
-manga4life('Tensei-Shitara-dai-Nana-Ouji-dattanode-Kimamani-Majutsu-o-Kiwamemasu')
-manga4life('The-Mage-Will-Master-Magic')
+manga4life('Chainsaw-Man','https://weebcentral.com/series/01J76XYCRVY3QGYAMRR3STW941/rss')
+manga4life('Dandadan','https://weebcentral.com/series/01J76XYEMWA55C7XTZHP1HNARM/rss')
+manga4life('Onepunch-Man','https://weebcentral.com/series/01J76XY7KT7J224EBK6J816Y1Q/rss')
+manga4life('The-Reason-Why-Raeliana-Ended-Up-at-the-Dukes-Mansion','https://weebcentral.com/series/01J76XYDMXD0HR73A27J6ECMV1/rss')
+manga4life('Tongari-Booshi-No-Atorie','https://weebcentral.com/series/01J76XYC2K8QWFZZRYYCZMN6EF/rss') # Witch Hat Atelier
+manga4life('Villainess-Level-99','https://weebcentral.com/series/01J76XYE073B0B89TZEJ7GPBKB/rss')
 
-manga4life('Boku-Dake-Ga-Inai-Machi')
+manga4life('Re-Living-My-Life-with-a-Boyfriend-Who-Doesnt-Remember-Me','https://weebcentral.com/series/01J76XYHD3MGVE4MNGR8XENEJY/rss')
+
+manga4life('Doctor-Elise-The-Royal-Lady-with-the-Lamp','https://weebcentral.com/series/01J76XYESG3PBRHZ3TQSVM9EBX/rss')
+manga4life('Gate-Jietai-Kare-No-Chi-Nite-Kaku-Tatakeri','https://weebcentral.com/series/01J76XYA7P8A1RP79MW02JWWW8/rss')
+
+# manga4life('Bokurano')
+# manga4life('Bonnouji')
+# manga4life('Dungeon-Meshi')
+# manga4life('Gaikotsu-Kishi-sama-Tadaima')  # Skeleton Knight in Another World
+# manga4life('Handyman-Saitou-In-Another-World')
+# manga4life('I-Was-A-Sword-When-I-Reincarnated')
+# manga4life('Kaguya-Wants-To-Be-Confessed-To')  # Kaguya-sama  - Love is War
+# manga4life('Kekkon-Surutte-Hontou-desu-ka-365-Days-to-the-Wedding')
+# manga4life('Kill-La-Kill')
+# manga4life('Kimi-No-Na-Wa')  # Your Name
+# manga4life('Kumo-Desu-Ga-Nani-Ka') # So I'm a Spider, so what
+# manga4life('Kumo-Desu-ga-Nani-ka-Daily-Life-of-the-Four-Spider-Sisters')
+# manga4life('Look-Back')
+# manga4life('Lv2-kara-Cheat-datta-Moto-Yuusha-Kouho-no-Mattari-Isekai-Life')
+# manga4life('Moon-Led-Journey-Across-Another-World')  # Moonlit Fantasy
+# manga4life('Neon-Genesis-Evangelion')
+# manga4life('Planetes')
+# manga4life('Reincarnated-as-a-Sword-Another-Wish')
+# manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu-Daiisshou-Outo-No-Ichinichi-Hen') # Re Zero Chapter 1
+# manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu')                                 # Re Zero Chapter 2
+# manga4life('Re-Zero-Kara-Hajimeru-Isekai-Seikatsu-Daisanshou-Truth-Of-Zero')        # Re Zero Chapter 3
+# manga4life('ReZero-kara-Hajimeru-Isekai-Seikatsu-Daiyonshou-Seiiki-to-Gouyoku-no-Majou') # Re Zero Chapter 4
+# manga4life('ReZERO-Starting-Life-in-Another-World-The-Frozen-Bond')
+# manga4life('S-rank-Monster-No-Behemoth-Dakedo')
+# manga4life('Solo-Leveling')
+# manga4life('Solo-Leveling-Ragnarok')
+# manga4life('Solo-Leveling-Volume-Version')
+# manga4life('Steins-Gate')
+# manga4life('Uzumaki')
+# 
+# manga4life('Kimi-Ni-Todoke') # From Me to You
+# manga4life('The-Dark-Magician-Transmigrates-After-66666-Years')
+# 
+# manga4life('Spider-Man')
+# manga4life('Spider-Man-Fake-Red')
+# manga4life('Star-Wars-The-Mandalorian')
+# manga4life('Star-Wars-Visions-The-Manga-Anthology')
+# 
+# #manga4life('Seijo-no-Maryoku-wa-Bannou-Desu')
+# #manga4life('The-Saints-Magic-Power-is-Omnipotent-The-Other-Saint')
+# 
+# manga4life('Tensei-Shitara-dai-Nana-Ouji-dattanode-Kimamani-Majutsu-o-Kiwamemasu')
+# manga4life('The-Mage-Will-Master-Magic')
+# 
+# manga4life('Boku-Dake-Ga-Inai-Machi')
 
 # Update the remote Books
 system2("C:/Program Files/FreeFileSync/Bin/FreeFileSync_x64.exe",

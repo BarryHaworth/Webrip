@@ -55,7 +55,7 @@ if (file.exists(paste0(PROJECT_DIR,"/spyxfamily.RData"))){
 spyxfamily <- spyxfamily %>% filter(next_url!="")
 
 # How many pages total?  91 chapters plus extras
-for (i in seq(1:120)){
+for (i in seq(1:150)){
   tryCatch({
     url <- tail(spyxfamily$next_url,1)
     if (nchar(url)>0){
