@@ -31,9 +31,10 @@ FILE_DIR    <- "c:/R/Webrip/Gunnerkrigg"
 #stop  = 2397 # End of Chapter 78
 #start = 2378
 #stop  = 2787  # Latest page 19 (as at 24/05/2022)
-start = 2788
-stop  = 2840  # Latest page 19 (as at 22/09/2023)
-
+#start = 2788
+#stop  = 2840  # Latest page 19 (as at 22/09/2023)
+start= 2810
+stop = 3113  # Latest as at 11/06/2025
 
 # for testing
 d = start

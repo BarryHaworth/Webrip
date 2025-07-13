@@ -23,7 +23,7 @@ library(stringr)
 library(tidyRSS)
 
 PROJECT_DIR <- "c:/R/Webrip/Manga4Life"
-BOOK_DIR    <- "f:/books/comics/Manga4Life"
+BOOK_DIR    <- "g:/books/comics/Manga4Life"
 
 # test
 manga <-'Spy-X-Family'
@@ -177,7 +177,6 @@ manga4life('Zannen-Jokanbu-Black-General-san','https://weebcentral.com/series/01
 manga4life('Ranger-Reject','https://weebcentral.com/series/01J76XYED6E0G8RYGGFDQ4EZTG/rss')
 manga4life('Boku-No-Hero-Academia','https://weebcentral.com/series/01J76XYAE4S59RVPJETN0MFRX5/rss')
 
-
 manga4life('Chainsaw-Man','https://weebcentral.com/series/01J76XYCRVY3QGYAMRR3STW941/rss')
 manga4life('Dandadan','https://weebcentral.com/series/01J76XYEMWA55C7XTZHP1HNARM/rss')
 manga4life('Onepunch-Man','https://weebcentral.com/series/01J76XY7KT7J224EBK6J816Y1Q/rss')
@@ -189,6 +188,10 @@ manga4life('Re-Living-My-Life-with-a-Boyfriend-Who-Doesnt-Remember-Me','https://
 
 manga4life('Doctor-Elise-The-Royal-Lady-with-the-Lamp','https://weebcentral.com/series/01J76XYESG3PBRHZ3TQSVM9EBX/rss')
 manga4life('Gate-Jietai-Kare-No-Chi-Nite-Kaku-Tatakeri','https://weebcentral.com/series/01J76XYA7P8A1RP79MW02JWWW8/rss')
+
+manga4life('The-One-Within-the-Villainess','https://weebcentral.com/series/01J76XYGM7VD5ZCX1EQWN4Q9E3/rss')
+
+manga4life('Jishou-Akuyaku-Reijou-Na-Konyakusha-No-Kansatsu-Kiroku','https://weebcentral.com/series/01J76XYCVKVN778QDA1N86GYW8/rss')
 
 # manga4life('Bokurano')
 # manga4life('Bonnouji')
