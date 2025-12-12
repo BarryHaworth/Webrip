@@ -22,7 +22,7 @@ library(stringr)
 library(tidyRSS)
 
 PROJECT_DIR <- "c:/R/Webrip/Manga4Life"
-BOOK_DIR    <- "f:/books/comics/Manga4Life"
+BOOK_DIR    <- "h:/books/comics/Manga4Life"
 
 manga4rip <- function(manga){
   FILE_DIR    <- paste0(PROJECT_DIR,"/",manga)

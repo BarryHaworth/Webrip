@@ -14,7 +14,7 @@ library(data.table)
 
 PROJECT_DIR <- "c:/R/Webrip"
 #FILE_DIR    <- "c:/R/Webrip/wallpaperscraft"
-FILE_DIR    <- "f:/pictures/wallpaperscraft"
+FILE_DIR    <- "h:/pictures/wallpaperscraft"
 dir.create(FILE_DIR,showWarnings = FALSE)
 
 # Stage 1: Page through the list
@@ -23,7 +23,8 @@ dir.create(FILE_DIR,showWarnings = FALSE)
 start <- 1
 # stop  <- 9345 # As at 06/07/2023
 # stop  <- 9840 # As at 26/06/2024
-stop  <- 10042 # As at 23/04/2025
+# stop  <- 10042 # As at 23/04/2025
+stop  <- 6924 # As at 12/12/2025 (Less than before?)
 
 # Test URL
 url <- 'https://wallpaperscraft.com/all/page2'
@@ -102,6 +103,7 @@ res <- "1080x1920"  # Phone Resolution
 # res <- "1920x1200"  # tablet resolution
 # res <- "1920x1080"  # hi-res resolution
 # res <- "2160x1620"  # iPad resolution
+res <- "2560x1080"   # Dual Screen Resolution
 
 # Download the files (in reverse order to get the new ones first.)
 for (i in nrow(wall_filtered):1){
