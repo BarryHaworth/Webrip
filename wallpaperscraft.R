@@ -4,6 +4,8 @@
 # Program works by first paging through the full 
 # list of images (all) and harvesting file names,
 # Then downloading the images in the specified resolution
+#
+# 26/12/2025 UPDATE to make the common folder ~/pictures/wallpaper
 
 library(rvest)
 library(dplyr)
@@ -13,8 +15,8 @@ library(tidyr)
 library(data.table)
 
 PROJECT_DIR <- "c:/R/Webrip"
-#FILE_DIR    <- "c:/R/Webrip/wallpaperscraft"
-FILE_DIR    <- "h:/pictures/wallpaperscraft"
+#FILE_DIR    <- "h:/pictures/wallpaperscraft"
+FILE_DIR    <- "h:/pictures/wallpapers"
 dir.create(FILE_DIR,showWarnings = FALSE)
 
 # Stage 1: Page through the list
@@ -104,6 +106,7 @@ res <- "1080x1920"  # Phone Resolution
 # res <- "1920x1080"  # hi-res resolution
 # res <- "2160x1620"  # iPad resolution
 res <- "2560x1080"   # Dual Screen Resolution
+#res <- "3840x1080"   # Dual Screen Resolution
 
 # Download the files (in reverse order to get the new ones first.)
 for (i in nrow(wall_filtered):1){

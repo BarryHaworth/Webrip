@@ -1,13 +1,16 @@
- #  Wallpapers Wide
-# This looks like it would be amenable to the same treatment as wallpaperscraft
-# but with the advantage that it includes a dual screen resolution (3840x1080)
-# Need to write this.
+#  HDQ Wallpapers 
+# Another wallpapers ripper, this time of the HDQ Walls web site.
+# Writing this one so as to get wallapers for my phone (resolution 1080x2400)
+# This looks like it would be amenable to the same treatment as wallpaperscraft and wallpaperswide
+# 
 # Sample wallpaper:
-# https://wallpaperswide.com/download/mirror_of_the_mountains_lake_reflections-wallpaper-3840x1080.jpg
+# https://images.hdqwalls.com/download/superman-icon-of-justice-kn-1080x2400.jpg
 #
-# 26/12/2025 UPDATE to make the common folder ~/pictures/wallpaper
+# Does not work - get "Forbidden (HTTP 403)" error.
+# Would it work in Python?
 
 library(rvest)
+library(httr)
 library(dplyr)
 library(xml2)
 library(stringr)
@@ -15,23 +18,19 @@ library(tidyr)
 library(data.table)
 
 PROJECT_DIR <- "c:/R/Webrip"
-#FILE_DIR    <- "h:/pictures/wallpaperswide"
 FILE_DIR    <- "h:/pictures/wallpapers"
 dir.create(FILE_DIR,showWarnings = FALSE)
 
 # Test URL
-url <- 'https://wallpaperswide.com/page/2'
-url <- 'https://wallpaperswide.com/3840x1080-wallpapers-r/page/2' # select the resolution wanted
-url <- 'https://wallpaperswide.com/1080x2400-wallpapers-r/page/2'
+url <- 'https://hdqwalls.com/1080x2400-resolution-wallpapers/page/2'
 
 # Set D/L Resolution
-res <- "1080x2400"   # Oppo a96/ Ulefone Resolution
-#res <- "3840x1080"   # Dual Screen Resolution
-#res <- "3440x1440"
+res <- "1080x2400"   # Oppo a96/ Ulephone 30 Pro Resolution.  
 
 rip_url <- function(url){
-  webpage  <- read_html(url)
-  image_list  <- html_nodes(webpage,'.thumb_img')
+  x <- GET(url, add_headers('user-agent' = 'Private use data scraper'))
+  webpage  <- read_html(x)
+  image_list  <- html_nodes(webpage,'.wallpapers_container')
   thumbs <- xml_attr(image_list,'src')
   return(data.frame(thumbnail=thumbs))
 }
@@ -40,14 +39,14 @@ rip_url <- function(url){
 
 start <- 1
 #stop  <- 10
-stop  <- 126 # Total for A96 
+#stop  <- 126 # Total for A96 
 #stop  <- 840 # for dual screen As at 12/12/2025 
-#stop <- 1034 # for res = 3440x1440
+stop <- 6939 # for res = 1080x2400
 
 if (file.exists(paste0(PROJECT_DIR,"/wallpaperswide-",res,".RData"))){
   load(paste0(PROJECT_DIR,"/wallpaperswide-",res,".RData"))  # Load the data file if it exists
 } else {
-#  wallpaperswide <- rip_url('https://wallpaperswide.com/3840x1080-wallpapers-r/page/1')  # Initialise with  first page
+  #  wallpaperswide <- rip_url('https://wallpaperswide.com/3840x1080-wallpapers-r/page/1')  # Initialise with  first page
   wallpaperswide <- rip_url(paste0('https://wallpaperswide.com/',res,'-wallpapers-r/page/1'))  # Initialise with  first page
 }
 
@@ -55,7 +54,7 @@ cume <- 0
 
 for (i in start:stop){
   before <- nrow(wallpaperswide)
-#  url <- paste0('https://wallpaperswide.com/page/',i)
+  #  url <- paste0('https://wallpaperswide.com/page/',i)
   url <- paste0('https://wallpaperswide.com/',res,'-wallpapers-r/page/',i)
   cat(paste("Ripping page",i,"of",stop,"url",url))
   thumbs <- tryCatch({rip_url(url)},error=function(e){}) 
